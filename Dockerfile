@@ -9,5 +9,6 @@ RUN \
   apk del wget ca-certificates
 RUN ["java", "-Djava.awt.headless=true", "-jar", "plantuml.jar", "-version"]
 RUN ["dot", "-version"]
-ENTRYPOINT ["java", "-Djava.awt.headless=true", "-jar", "plantuml.jar", "-p"]
-CMD ["-tsvg"]
+VOLUME ["/inputdir"]
+ENTRYPOINT ["java", "-Djava.awt.headless=true", "-jar", "plantuml.jar", "/inputdir/**/*.puml"]
+CMD ["-tpng"]
